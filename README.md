@@ -1,1 +1,1 @@
-# screen-dimmer
+# Screen Dimmer

@@ -1,9 +1,40 @@
 @import "tailwindcss";
 
-body {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica,
-    Arial, sans-serif;
+*:focus {
+  @apply focus:ring-2 focus:ring-blue-500;
+}
+
+button {
+  @apply w-full text-left bg-zinc-800 hover:bg-zinc-700 rounded-md p-2 mb-2 cursor-pointer font-semibold text-white;
+}
+
+
+input {
+  @apply border-zinc-800 focus:border-zinc-700 border-2 rounded-md p-2 w-full font-semibold text-white;
+}
+
+.input-wrapper {
+  @apply mb-4;
+}
+
+html, body {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
   margin: auto;
-  max-width: 38rem;
-  padding: 2rem;
+  min-height: 100vh;
+  min-width: 100vw;
+}
+
+input, button {
+  font-family: inherit;
+
+  &:focus {
+    outline: none;
+  }
+}
+
+p, span, label, div, h1, h2, h3, h4, h5, h6 {
+  user-select: none;
 }

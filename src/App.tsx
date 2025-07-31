@@ -35,7 +35,7 @@ const App = () => {
   }, [displays, form.displays, selectedDisplay]);
 
   return (
-    <div className="bg-zinc-900 min-h-screen text-white p-4">
+    <div className="min-h-screen p-4">
       <h1 className="text-2xl mb-2 font-bold">Screen Dimmer</h1>
       <SelectedDisplayProvider value={{ display: selectedDisplay, setSelectedDisplay }}>
         <FormProvider value={{ form, setForm }}>

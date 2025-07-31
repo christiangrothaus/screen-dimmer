@@ -23,8 +23,22 @@ html, body {
   box-sizing: border-box;
   font-family: Arial, sans-serif;
   margin: auto;
-  min-height: 100vh;
-  min-width: 100vw;
+  max-height: 100vh;
+  max-width: 100vw;
+
+  @apply bg-zinc-900 text-white;
+
+  &::-webkit-scrollbar {
+    @apply w-3 bg-transparent;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    @apply bg-zinc-700 rounded-md;
+  }
+
+  &::-webkit-scrollbar-thumb:hover {
+    @apply bg-zinc-600;
+  }
 }
 
 input, button {

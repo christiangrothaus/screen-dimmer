@@ -25,7 +25,8 @@ const App = () => {
         setSelectedDisplay(displays[0]);
       }
 
-      if (!form.displays.length) {
+      if (!Object.keys(form.displays).length) {
+        console.log('hit', form.displays);
         setForm({ displays: displays.reduce((acc, display) => {
           acc[display.id] = { percentage: 0 }; // Default percentage for each display
           return acc;

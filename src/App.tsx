@@ -26,14 +26,13 @@ const App = () => {
       }
 
       if (!Object.keys(form.displays).length) {
-        console.log('hit', form.displays);
         setForm({ displays: displays.reduce((acc, display) => {
           acc[display.id] = { percentage: 0 }; // Default percentage for each display
           return acc;
         }, {} as FormModel['displays']) });
       }
     }
-  }, [displays, form.displays.length, selectedDisplay]);
+  }, [displays, form.displays, selectedDisplay]);
 
   return (
     <div className="bg-zinc-900 min-h-screen text-white p-4">

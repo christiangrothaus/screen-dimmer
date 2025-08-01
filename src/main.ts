@@ -13,6 +13,7 @@ if (electronSquirrelStartup) {
 
 const createWindow = () => {
   const mainWindow = new BrowserWindow({
+    icon: `${__dirname}/assets/icon.png`,
     width: 800,
     height: 600,
     webPreferences: {

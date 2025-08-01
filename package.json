@@ -6,7 +6,7 @@
   "main": ".webpack/main",
   "scripts": {
     "start": "electron-forge start",
-    "build": "electron-forge make"
+    "build": "electron-forge package"
   },
   "keywords": [
     "screen",

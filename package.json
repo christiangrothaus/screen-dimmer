@@ -1,12 +1,12 @@
 {
   "name": "screen-dimmer",
-  "productName": "screen-dimmer",
+  "productName": "Screen Dimmer",
   "version": "1.0.0",
   "description": "A simple screen dimmer application.",
   "main": ".webpack/main",
   "scripts": {
     "start": "electron-forge start",
-    "build": "electron-forge package"
+    "build": "electron-forge make"
   },
   "keywords": [
     "screen",
@@ -59,6 +59,7 @@
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "tailwindcss": "^4.1.11",
-    "ts-loader": "^9.5.2"
+    "ts-loader": "^9.5.2",
+    "update-electron-app": "^3.1.1"
   }
 }

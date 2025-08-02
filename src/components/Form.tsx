@@ -1,15 +1,21 @@
-import { useContext } from 'react';
-import { SelectedDisplayContext } from '../context/SelectedDisplayContext';
-import DisplaySelector from './DisplaySelector';
-import PercentageInput from './PercentageInput';
+import useDisplays from '../hooks/useDisplays';
+import Display from './Display';
 
 const Form = () => {
-  const { display } = useContext(SelectedDisplayContext);
+  const { displays } = useDisplays();
+
+  if (displays.length === 0) {
+    return <div>No displays found.</div>;
+  }
 
   return (
-    <div>
-      <DisplaySelector />
-      <PercentageInput label="Dim Percentage" name={`displays.${display?.id}.percentage`} />
+    <div className="flex flex-row flex-wrap gap-4">
+      {displays.map(display => (
+        <Display
+          key={display.id}
+          display={display}
+        />
+      ))}
     </div>
   );
 };

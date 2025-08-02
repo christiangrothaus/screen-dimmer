@@ -38,14 +38,17 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-node-
 
-      - name: Create release tag
+      - name: Bump version
         run: |
           git config --global user.name "GitHub Actions"
           git config --global user.email "<>"
-          $version = npm version ${{ github.event.inputs.version }}
-          echo "npm_version=$version" | Out-File -FilePath $env:GITHUB_ENV -Append
-          git tag $version
-          git push origin $version
+          echo "npm_version=$(npm version ${{ github.event.inputs.version }})" | Out-File -FilePath $env:GITHUB_ENV -Append
+
+
+      - name: Create tag
+        run: |
+          git tag ${{ env.npm_version }}
+          git push origin ${{ env.npm_version }}
 
       - name: Build project
         run: |

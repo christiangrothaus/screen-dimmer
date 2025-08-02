@@ -1,9 +1,6 @@
-# [WIP] Screen Dimmer
+# Screen Dimmer
 
 A simple Electron application for dimming screens.
-
-## Installation
-
 
 ## How to Build
 

@@ -2,7 +2,7 @@ import useFormValue from '../hooks/useFormValue';
 import Label from './Label';
 
 interface PercentageInputProps {
-  label?: string | number
+  label: string | number
   name: string
 }
 
@@ -16,17 +16,19 @@ const PercentageInput = ({ label, name }: PercentageInputProps) => {
 
   return (
     <div className="input-wrapper">
-      {label && <Label name={name}>{label}</Label>}
-      <input
-        value={value}
-        name={name}
-        id={name}
-        type="number"
-        min="0"
-        max="100"
-        step="1"
-        onChange={handleChange}
-      />
+      <Label name={name}>{label}</Label>
+      <div>
+        <input
+          value={value}
+          name={name}
+          id={name}
+          type="number"
+          min="0"
+          max="100"
+          step="1"
+          onChange={handleChange}
+        />
+      </div>
     </div>
   );
 };

@@ -13,7 +13,7 @@ import { rendererConfig } from './webpack.renderer.config';
 const config: ForgeConfig = {
   packagerConfig: {
     asar: true,
-    executableName: 'Screen Dimmer',
+    executableName: 'ScreenDimmer',
   },
   rebuildConfig: {},
   makers: [
@@ -24,8 +24,8 @@ const config: ForgeConfig = {
       name: 'ScreenDimmer',
       title: 'Screen Dimmer',
       authors: 'Christian Grothaus',
-      setupExe: 'Screen Dimmer Setup.exe',
-      exe: 'Screen Dimmer.exe',
+      setupExe: 'ScreenDimmerSetup.exe',
+      exe: 'ScreenDimmer.exe',
       noMsi: true,
     }),
     new MakerZIP({}, ['darwin']),

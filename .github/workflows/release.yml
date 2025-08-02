@@ -62,8 +62,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           tag_name: ${{ env.npm_version }}
-          name: Release ${{ env.npm_version }}
-          body: ${{ github.event.inputs.notes }}
+          name: ${{ env.npm_version }}
           draft: true
           files: |
             out/make/squirrel.windows/x64/*

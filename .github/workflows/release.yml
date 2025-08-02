@@ -41,7 +41,7 @@ jobs:
       - name: Create release branch
         run: |
           git config --global user.name "GitHub Actions"
-          git config --global user.email ""
+          git config --global user.email "<>"
           echo "npm_version=$(npm version ${{ github.event.inputs.version }})" | Out-File -FilePath $env:GITHUB_ENV -Append
           git push origin ${{ env.npm_version }}
 

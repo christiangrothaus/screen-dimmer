@@ -43,6 +43,7 @@ jobs:
           git config --global user.name "GitHub Actions"
           git config --global user.email "<>"
           echo "npm_version=$(npm version ${{ github.event.inputs.version }})" | Out-File -FilePath $env:GITHUB_ENV -Append
+          git push origin
 
       - name: Create tag
         run: |

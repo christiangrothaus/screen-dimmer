@@ -1,5 +1,6 @@
 import { app, BrowserWindow } from 'electron';
 import electronSquirrelStartup from 'electron-squirrel-startup';
+import { updateElectronApp, UpdateSourceType } from 'update-electron-app';
 import { IpcListener } from './classes/ipc-listener';
 
 // This get added by Electorn Forge
@@ -10,6 +11,14 @@ declare const MAIN_WINDOW_PRELOAD_WEBPACK_ENTRY: string;
 if (electronSquirrelStartup) {
   app.quit();
 }
+
+updateElectronApp({
+  updateSource: {
+    type: UpdateSourceType.ElectronPublicUpdateService,
+    repo: 'christiangrothaus/screen-dimmer',
+  },
+  updateInterval: '1 hour',
+});
 
 const createWindow = () => {
   const mainWindow = new BrowserWindow({
@@ -23,7 +32,6 @@ const createWindow = () => {
     },
   });
   mainWindow.setMenuBarVisibility(false);
-  mainWindow.setResizable(false);
   mainWindow.setTitle('Screen Dimmer');
 
   mainWindow.loadURL(MAIN_WINDOW_WEBPACK_ENTRY);

@@ -1,4 +1,4 @@
-# Screen Dimmer
+# [WIP] Screen Dimmer
 
 A simple Electron application for dimming screens.
 

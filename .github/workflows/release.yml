@@ -41,6 +41,8 @@ jobs:
       - name: Create release branch
         run: |
           echo "npm_version=$(npm version ${{ github.event.inputs.version }})" | Out-File -FilePath $env:GITHUB_ENV -Append
+          git config --global user.name "GitHub Actions"
+          git config --global user.email ""
           git checkout -b release/${{ env.npm_version }}
           git add package.json package-lock.json
           git commit -m "Release version ${{ env.npm_version }}"

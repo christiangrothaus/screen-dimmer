@@ -9,7 +9,7 @@ const Form = () => {
   }
 
   return (
-    <div className="flex flex-row flex-wrap gap-4">
+    <div className="display-grid">
       {displays.map(display => (
         <Display
           key={display.id}

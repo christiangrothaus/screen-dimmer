@@ -1,5 +1,9 @@
 @import "tailwindcss";
 
+:root {
+  --grid-min-width: 16rem;
+}
+
 *:focus {
   @apply focus:border-2 focus:border-blue-500;
 }
@@ -17,6 +21,12 @@ input {
   @apply mb-4;
 }
 
+.display-grid {
+  @apply grid gap-4;
+
+  grid-template-columns: repeat(auto-fill, minmax(var(--grid-min-width), 1fr));
+}
+
 html, body {
   padding: 0;
   margin: 0;
@@ -27,6 +37,10 @@ html, body {
   max-width: 100vw;
 
   @apply bg-zinc-900 text-white;
+
+  &::-webkit-scrollbar-corner {
+    @apply bg-transparent;
+  }
 
   &::-webkit-scrollbar {
     @apply w-3 bg-transparent;

@@ -6,7 +6,7 @@ interface DisplayProps {
 
 const Display = ({ display }: DisplayProps) => {
   return (
-    <div className="border-2 p-4 rounded-md flex flex-col gap-2 items-center min-w-64">
+    <div className="border-2 p-4 rounded-md flex flex-col gap-2 items-center min-w-(grid-min-width)">
       <PercentageInput label={display.label || display.id} name={`displays.${display.id}.percentage`} />
     </div>
   );

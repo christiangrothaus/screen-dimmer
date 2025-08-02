@@ -44,7 +44,6 @@ jobs:
           git config --global user.email "<>"
           echo "npm_version=$(npm version ${{ github.event.inputs.version }})" | Out-File -FilePath $env:GITHUB_ENV -Append
 
-
       - name: Create tag
         run: |
           git tag ${{ env.npm_version }}

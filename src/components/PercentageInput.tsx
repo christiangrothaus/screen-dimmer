@@ -17,18 +17,17 @@ const PercentageInput = ({ label, name }: PercentageInputProps) => {
   return (
     <div className="input-wrapper">
       <Label name={name}>{label}</Label>
-      <div>
-        <input
-          value={value}
-          name={name}
-          id={name}
-          type="number"
-          min="0"
-          max="100"
-          step="1"
-          onChange={handleChange}
-        />
-      </div>
+      <input
+        value={value}
+        name={name}
+        id={name}
+        type="number"
+        min="0"
+        max="100"
+        step="1"
+        onChange={handleChange}
+        className="max-w-1/3"
+      />
     </div>
   );
 };

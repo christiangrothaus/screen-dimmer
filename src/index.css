@@ -18,7 +18,7 @@ input {
 }
 
 .input-wrapper {
-  @apply mb-4;
+  @apply mb-4 w-full h-full flex flex-col gap-2 items-center;
 }
 
 .display-grid {
@@ -60,6 +60,11 @@ input, button {
 
   &:focus {
     outline: none;
+  }
+
+  &::-webkit-outer-spin-button,
+  &::-webkit-inner-spin-button {
+    opacity: 1;
   }
 }
 

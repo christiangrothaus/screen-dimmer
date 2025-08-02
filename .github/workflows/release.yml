@@ -42,9 +42,10 @@ jobs:
         run: |
           git config --global user.name "GitHub Actions"
           git config --global user.email "<>"
-          echo "npm_version=$(npm version ${{ github.event.inputs.version }})" | Out-File -FilePath $env:GITHUB_ENV -Append
-          git tag ${{ env.npm_version }}
-          git push origin ${{ env.npm_version }}
+          $version = npm version ${{ github.event.inputs.version }}
+          echo "npm_version=$version" | Out-File -FilePath $env:GITHUB_ENV -Append
+          git tag $version
+          git push origin $version
 
       - name: Build project
         run: |

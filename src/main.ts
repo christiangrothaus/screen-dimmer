@@ -12,6 +12,8 @@ if (electronSquirrelStartup) {
   app.quit();
 }
 
+export let mainWindow: BrowserWindow | null = null;
+
 updateElectronApp({
   updateSource: {
     type: UpdateSourceType.ElectronPublicUpdateService,
@@ -21,7 +23,7 @@ updateElectronApp({
 });
 
 const createWindow = () => {
-  const mainWindow = new BrowserWindow({
+  const window = new BrowserWindow({
     icon: `${__dirname}/assets/icon.png`,
     width: 840,
     height: 400,
@@ -31,14 +33,16 @@ const createWindow = () => {
       preload: MAIN_WINDOW_PRELOAD_WEBPACK_ENTRY,
     },
   });
-  mainWindow.setMenuBarVisibility(false);
-  mainWindow.setTitle('Screen Dimmer');
+  window.setMenuBarVisibility(false);
+  window.setTitle('Screen Dimmer');
 
-  mainWindow.loadURL(MAIN_WINDOW_WEBPACK_ENTRY);
+  window.loadURL(MAIN_WINDOW_WEBPACK_ENTRY);
+
+  mainWindow = window;
 
   if (process.env.NODE_ENV === 'development') {
-    mainWindow.webContents.on('did-finish-load', () => {
-      mainWindow.webContents.openDevTools();
+    window.webContents.on('did-finish-load', () => {
+      window.webContents.openDevTools();
     });
   }
 };

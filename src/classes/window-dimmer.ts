@@ -1,5 +1,4 @@
 import { app, BrowserWindow, screen } from 'electron';
-import { mainWindow } from '../main';
 
 declare const DIMMER_WINDOW_WEBPACK_ENTRY: string;
 
@@ -33,7 +32,6 @@ class WindowDimmer {
       frame: false,
       movable: false,
       transparent: true,
-      parent: mainWindow ?? undefined,
     });
     window.setIgnoreMouseEvents(true);
     window.setOpacity(opacity);

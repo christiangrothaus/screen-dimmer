@@ -12,8 +12,6 @@ if (electronSquirrelStartup) {
   app.quit();
 }
 
-export let mainWindow: BrowserWindow | null = null;
-
 updateElectronApp({
   updateSource: {
     type: UpdateSourceType.ElectronPublicUpdateService,
@@ -38,7 +36,9 @@ const createWindow = () => {
 
   window.loadURL(MAIN_WINDOW_WEBPACK_ENTRY);
 
-  mainWindow = window;
+  window.on('closed', () => {
+    app.quit();
+  });
 
   if (process.env.NODE_ENV === 'development') {
     window.webContents.on('did-finish-load', () => {

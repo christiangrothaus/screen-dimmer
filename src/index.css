@@ -13,12 +13,12 @@
 }
 
 button {
-  @apply w-full text-left bg-zinc-800 hover:bg-zinc-700 rounded-md p-2 mb-2 cursor-pointer font-semibold text-white;
+  @apply w-full text-left bg-zinc-800 hover:bg-zinc-700 rounded-md p-2 mb-2 cursor-pointer font-semibold text-zinc-300;
 }
 
 
 input {
-  @apply border-zinc-800 focus:border-zinc-700 border-2 rounded-md p-2 w-full font-semibold text-white;
+  @apply border-zinc-800 focus:border-zinc-700 border-2 rounded-md p-2 w-full font-semibold text-zinc-300;
 }
 
 .input-wrapper {
@@ -40,7 +40,7 @@ html, body {
   max-height: 100vh;
   max-width: 100vw;
 
-  @apply bg-zinc-900 text-white;
+  @apply bg-zinc-900 text-zinc-300;
 
   &::-webkit-scrollbar-corner {
     @apply bg-transparent;

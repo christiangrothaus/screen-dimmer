@@ -42,6 +42,10 @@ html, body {
 
   @apply bg-zinc-900 text-zinc-50;
 
+  &::selection {
+    @apply bg-blue-500;
+  }
+
   &::-webkit-scrollbar-corner {
     @apply bg-transparent;
   }

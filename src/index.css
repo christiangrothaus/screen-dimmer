@@ -68,8 +68,7 @@ input, button {
 
   &::-webkit-outer-spin-button,
   &::-webkit-inner-spin-button {
-    opacity: 0;
-    pointer-events: none;
+    display: none;
   }
 }
 

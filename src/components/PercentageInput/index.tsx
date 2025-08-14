@@ -64,7 +64,7 @@ const PercentageInput = ({ label, name }: PercentageInputProps) => {
           max="100"
           step="1"
           onChange={handleChange}
-          className="max-w-1/3"
+          className="max-w-1/3 text-center"
         />
         <AdjustmentButton onMouseDown={handleIncrement} onMouseUp={handleMouseUpIncrement} onMouseLeave={handleMouseUpIncrement}>
           +

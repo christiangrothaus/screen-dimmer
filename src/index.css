@@ -4,6 +4,10 @@
   --grid-min-width: 16rem;
 }
 
+@theme {
+  --color-zinc-850: oklch(0.242 0.006 285.959);
+}
+
 *:focus {
   @apply focus:border-2 focus:border-blue-500;
 }

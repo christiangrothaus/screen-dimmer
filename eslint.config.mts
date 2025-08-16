@@ -15,7 +15,7 @@ export default tseslint.config([
       'react/react-in-jsx-scope': 'off',
       'react-hooks/rules-of-hooks': 'error',
       'react-hooks/exhaustive-deps': 'warn',
-      'no-console': 'warn',
+      'no-console': 'off',
       '@stylistic/semi': ['error', 'always'],
       '@typescript-eslint/no-explicit-any': 'off',
     },

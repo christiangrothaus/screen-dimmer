@@ -6,7 +6,6 @@ export interface FormModel {
       percentage: number
     }
   }
-  [key: string]: any
 }
 
 interface FormContextModel {

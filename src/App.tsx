@@ -9,13 +9,23 @@ const App = () => {
   const { displays } = useDisplays();
   const [form, setForm] = useState<FormModel>({ displays: {} });
 
+  const setFormWrapped = (form: FormModel) => {
+    setForm(form);
+    window.api.saveForm(form);
+  };
+
   useEffect(() => {
-    if (form.displays) {
-      Object.entries(form.displays).forEach(([id, { percentage }]) => {
-        window.api.dimWindow(Number(id), percentage / 100);
-      });
-    }
+    Object.entries(form.displays).forEach(([id, { percentage }]) => {
+      window.api.dimWindow(Number(id), percentage / 100);
+    });
   }, [form]);
+
+  useEffect(() => {
+    window.api.getForm().then((retrievedForm) => {
+      console.log('Retrieved form:', retrievedForm);
+      setForm(retrievedForm);
+    });
+  }, []);
 
   useEffect(() => {
     if (displays.length > 0) {
@@ -31,7 +41,7 @@ const App = () => {
   return (
     <div className="min-h-screen p-4">
       <h1 className="text-2xl mb-2 font-bold">Screen Dimmer</h1>
-      <FormProvider value={{ form, setForm }}>
+      <FormProvider value={{ form, setForm: setFormWrapped }}>
         <Form />
       </FormProvider>
     </div>

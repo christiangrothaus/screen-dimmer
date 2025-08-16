@@ -18,7 +18,7 @@ const config: ForgeConfig = {
   rebuildConfig: {},
   makers: [
     new MakerSquirrel({
-      iconUrl: 'https://raw.githubusercontent.com/christiangrothaus/screen-dimmer/refs/heads/main/src/assets/icon.png',
+      iconUrl: 'https://raw.githubusercontent.com/christiangrothaus/screen-dimmer/refs/heads/main/src/assets/icon.ico',
       setupIcon: path.join(__dirname, 'src/assets/icon.ico'),
       description: 'A simple screen dimmer for Windows',
       name: 'ScreenDimmer',

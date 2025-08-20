@@ -6,7 +6,7 @@ on:
       version:
         type: choice
         description: 'Version to release'
-        required: true
+        required: false
         options:
           - major
           - minor
@@ -39,6 +39,7 @@ jobs:
             ${{ runner.os }}-node-
 
       - name: Bump version
+        if: ${{ github.event.inputs.version != '' }}
         run: |
           git config --global user.name "GitHub Actions"
           git config --global user.email "<>"
@@ -46,6 +47,7 @@ jobs:
           git push origin
 
       - name: Create tag
+        if: ${{ github.event.inputs.version != '' }}
         run: |
           git tag ${{ env.npm_version }}
           git push origin ${{ env.npm_version }}

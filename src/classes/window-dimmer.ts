@@ -37,7 +37,7 @@ class WindowDimmer {
     this.windows.set(id, window);
   }
 
-  private static getScreenById(id: number) {
+  static getScreenById(id: number) {
     return screen.getAllDisplays().find(display => display.id === id);
   }
 }

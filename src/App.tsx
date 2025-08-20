@@ -22,7 +22,6 @@ const App = () => {
 
   useEffect(() => {
     window.api.getForm().then((retrievedForm) => {
-      console.log('Retrieved form:', retrievedForm);
       setForm(retrievedForm);
     });
   }, []);

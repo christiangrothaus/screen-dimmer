@@ -1,7 +1,7 @@
 {
   "name": "screen-dimmer",
   "productName": "Screen Dimmer",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "A simple screen dimmer application.",
   "main": ".webpack/main",
   "scripts": {

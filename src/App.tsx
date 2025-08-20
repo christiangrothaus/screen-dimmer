@@ -2,11 +2,9 @@ import { useEffect, useState } from 'react';
 import { createRoot } from 'react-dom/client';
 import Form from './components/Form';
 import { FormModel, FormProvider } from './context/FormContext';
-import useDisplays from './hooks/useDisplays';
 import './index.css';
 
 const App = () => {
-  const { displays } = useDisplays();
   const [form, setForm] = useState<FormModel>({ displays: {} });
 
   const setFormWrapped = (form: FormModel) => {
@@ -25,17 +23,6 @@ const App = () => {
       setForm(retrievedForm);
     });
   }, []);
-
-  useEffect(() => {
-    if (displays.length > 0) {
-      if (!Object.keys(form.displays).length) {
-        setForm({ displays: displays.reduce((acc, display) => {
-          acc[display.id] = { percentage: 0 }; // Default percentage for each display
-          return acc;
-        }, {} as FormModel['displays']) });
-      }
-    }
-  }, [displays, form.displays]);
 
   return (
     <div className="min-h-screen p-4">

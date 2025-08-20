@@ -1,4 +1,4 @@
-import { app } from 'electron';
+import { app, screen } from 'electron';
 import _ from 'lodash';
 import { readFileSync, writeFile } from 'original-fs';
 import { FormModel } from '../context/FormContext';
@@ -39,15 +39,26 @@ class Storage {
           return acc;
         }, {});
 
+        screen.getAllDisplays().forEach((display) => {
+          if (!cleanedDisplays[display.id]) {
+            cleanedDisplays[display.id] = { percentage: 0 };
+          }
+        });
+
         Storage.form.displays = cleanedDisplays;
         this.saveForm(Storage.form);
       }
     }
-    catch (error) {
-      console.error('Error loading form:', error);
+    catch {
+      Storage.form = {
+        displays: screen.getAllDisplays().reduce<FormModel['displays']>((acc, display) => {
+          acc[display.id] = { percentage: 0 };
+          return acc;
+        }, {}),
+      };
     }
 
-    return Storage.form || { displays: {} };
+    return Storage.form!;
   }
 }
 

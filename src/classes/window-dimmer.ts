@@ -1,19 +1,9 @@
-import { app, BrowserWindow, screen } from 'electron';
+import { BrowserWindow, screen } from 'electron';
 
 declare const DIMMER_WINDOW_WEBPACK_ENTRY: string;
 
-app.on('ready', () => {
-  WindowDimmer.init();
-});
-
 class WindowDimmer {
   private static windows: Map<number, BrowserWindow> = new Map();
-
-  private static screens: Electron.Display[] = [];
-
-  static init() {
-    this.screens = screen.getAllDisplays();
-  }
 
   static dimWindow(id: number, opacity: number) {
     if (this.windows.has(id)) {
@@ -23,6 +13,9 @@ class WindowDimmer {
         return;
       }
     }
+
+    const screenToDim = this.getScreenById(id);
+    if (!screenToDim) return;
 
     const window = new BrowserWindow({
       titleBarStyle: 'hidden',
@@ -40,15 +33,12 @@ class WindowDimmer {
     window.setFullScreenable(false);
     window.setSkipTaskbar(true);
     window.loadURL(DIMMER_WINDOW_WEBPACK_ENTRY);
-    const screen = this.getScreenById(id);
-    if (screen) {
-      window.setBounds(screen.bounds);
-    }
+    window.setBounds(screenToDim.bounds);
     this.windows.set(id, window);
   }
 
   private static getScreenById(id: number) {
-    return this.screens.find(screen => screen.id === id);
+    return screen.getAllDisplays().find(display => display.id === id);
   }
 }
 

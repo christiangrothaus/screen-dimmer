@@ -12,7 +12,6 @@ const useFormValue = <T,>(name: string): UseFormValueReturn<T> => {
 
   const valuePath = toPath(name);
   const value = valuePath.reduce((acc, key) => acc && acc[key], form) as T;
-  console.log(value);
 
   const setValue = (newValue: T) => {
     const updatedForm = cloneDeep(form);

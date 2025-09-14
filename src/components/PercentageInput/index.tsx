@@ -8,11 +8,20 @@ interface PercentageInputProps {
   name: string
 }
 
+const SHIFT_CREMENT_AMOUNT = 5;
+const REGULAR_CREMENT_AMOUNT = 1;
+const CREMENT_RATE = 150;
+
 const PercentageInput = ({ label, name }: PercentageInputProps) => {
   const inputRef = useRef<HTMLInputElement>(null);
+  const isShiftPressed = useRef<boolean>(false);
   const decrementIntervalRef = useRef<NodeJS.Timeout | null>(null);
   const incrementIntervalRef = useRef<NodeJS.Timeout | null>(null);
   const { value = 0, setValue } = useFormValue<number>(name);
+
+  const getCrementAmount = () => {
+    return isShiftPressed.current ? SHIFT_CREMENT_AMOUNT : REGULAR_CREMENT_AMOUNT;
+  };
 
   const updateValue = (newValue: number) => {
     setValue(Math.min(100, Math.max(0, newValue)));
@@ -23,20 +32,40 @@ const PercentageInput = ({ label, name }: PercentageInputProps) => {
     updateValue(Number(newValue));
   };
 
-  const handleIncrement = () => {
-    updateValue((inputRef.current?.valueAsNumber || 0) + 1);
+  const handleIncrement: React.MouseEventHandler<HTMLButtonElement> = (e) => {
+    isShiftPressed.current = e.shiftKey;
+    updateValue((inputRef.current?.valueAsNumber || 0) + getCrementAmount());
 
     incrementIntervalRef.current = setInterval(() => {
-      updateValue((inputRef.current?.valueAsNumber || 0) + 1);
-    }, 100);
+      updateValue((inputRef.current?.valueAsNumber || 0) + getCrementAmount());
+    }, CREMENT_RATE);
   };
 
-  const handleMouseDownDecrement = () => {
-    updateValue((inputRef.current?.valueAsNumber || 0) - 1);
+  const handleMouseDownDecrement: React.MouseEventHandler<HTMLButtonElement> = (e) => {
+    isShiftPressed.current = e.shiftKey;
+    updateValue((inputRef.current?.valueAsNumber || 0) - getCrementAmount());
 
     decrementIntervalRef.current = setInterval(() => {
-      updateValue((inputRef.current?.valueAsNumber || 0) - 1);
-    }, 100);
+      updateValue((inputRef.current?.valueAsNumber || 0) - getCrementAmount());
+    }, CREMENT_RATE);
+  };
+
+  const handleKeyDown: React.KeyboardEventHandler<HTMLButtonElement> = (e) => {
+    isShiftPressed.current = e.shiftKey;
+  };
+
+  const handleKeyUp: React.KeyboardEventHandler<HTMLButtonElement> = (e) => {
+    isShiftPressed.current = e.shiftKey;
+  };
+
+  const handleMouseLeaveDecrement = () => {
+    handleMouseUpDecrement();
+    isShiftPressed.current = false;
+  };
+
+  const handleMouseLeaveIncrement = () => {
+    handleMouseUpIncrement();
+    isShiftPressed.current = false;
   };
 
   const handleMouseUpDecrement = () => {
@@ -51,7 +80,7 @@ const PercentageInput = ({ label, name }: PercentageInputProps) => {
     <div className="input-wrapper">
       <Label name={name}>{label}</Label>
       <div className="flex w-full justify-center gap-2">
-        <AdjustmentButton onMouseDown={handleMouseDownDecrement} onMouseUp={handleMouseUpDecrement} onMouseLeave={handleMouseUpDecrement}>
+        <AdjustmentButton onKeyDown={handleKeyDown} onKeyUp={handleKeyUp} onMouseDown={handleMouseDownDecrement} onMouseUp={handleMouseUpDecrement} onMouseLeave={handleMouseLeaveDecrement}>
           -
         </AdjustmentButton>
         <input
@@ -66,7 +95,7 @@ const PercentageInput = ({ label, name }: PercentageInputProps) => {
           onChange={handleChange}
           className="max-w-1/3 text-center"
         />
-        <AdjustmentButton onMouseDown={handleIncrement} onMouseUp={handleMouseUpIncrement} onMouseLeave={handleMouseUpIncrement}>
+        <AdjustmentButton onKeyDown={handleKeyDown} onKeyUp={handleKeyUp} onMouseDown={handleIncrement} onMouseUp={handleMouseUpIncrement} onMouseLeave={handleMouseLeaveIncrement}>
           +
         </AdjustmentButton>
       </div>

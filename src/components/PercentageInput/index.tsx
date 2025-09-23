@@ -10,7 +10,7 @@ interface PercentageInputProps {
 
 const SHIFT_CREMENT_AMOUNT = 5;
 const REGULAR_CREMENT_AMOUNT = 1;
-const CREMENT_RATE = 150;
+const CREMENT_RATE = 250;
 
 const PercentageInput = ({ label, name }: PercentageInputProps) => {
   const inputRef = useRef<HTMLInputElement>(null);
